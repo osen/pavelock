@@ -171,9 +171,26 @@ void registration()
   {
     std::cout << "Please enter your new account details" << std::endl << std::endl;
     std::string username = Input::getAlphaNumericText("Username: ");
+    std::string firstName = Input::getAlphaNumericText("First Name: ");
+    std::string lastName = Input::getAlphaNumericText("Last Name: ");
     std::string password = Input::getPassword("Password: ");
+    std::string confirmPassword = Input::getPassword("Confirm Password: ");
 
-    return;
+    try
+    {
+      if(password != confirmPassword)
+      {
+        throw Exception("Passwords do not match");
+      }
+
+      Account::registration(username, password, firstName, lastName);
+      Input::notice("Registration successful. You may now log in with these details");
+      return;
+    }
+    catch(Exception& e)
+    {
+      Input::notice(std::string("Failed to register account: ") + e.what());
+    }
   }
 }
 
@@ -210,7 +227,7 @@ void login_or_register()
 
     if(choice == 0) return;
     else if(choice == 1) { login(); return; }
-    else if(choice == 2) { registration(); return; }
+    else if(choice == 2) { registration(); }
   }
 }
 

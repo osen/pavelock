@@ -23,6 +23,27 @@ void Account::login(std::string username, std::string password)
   state.username = username;
 }
 
+void Account::registration(std::string username, std::string password, std::string firstName, std::string lastName)
+{
+  try
+  {
+    Process::run("mkdir " + state.jailsRoot + "/" + username);
+  }
+  catch(Exception&)
+  {
+    throw Exception("Failed to create user directory. Account already exists");
+  }
+
+  std::ofstream passwdFile(state.jailsRoot + "/" + username + "/_passwd");
+
+  if(!passwdFile.is_open())
+  {
+    throw Exception("Failed to write passwd database");
+  }
+
+  passwdFile << sha1(password) << std::endl;
+}
+
 std::string Account::sha1(std::string input)
 {
   SHA1 checksum;

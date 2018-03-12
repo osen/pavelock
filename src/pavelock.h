@@ -30,6 +30,7 @@ class Account
 {
 public:
   static void login(std::string username, std::string password);
+  static void registration(std::string username, std::string password, std::string firstName, std::string lastName);
   static std::string sha1(std::string input);
 };
 

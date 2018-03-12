@@ -56,6 +56,8 @@ std::string Input::getPassword(std::string prompt)
 
   tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
+  std::cout << std::endl;
+
   return rtn;
 }
 
