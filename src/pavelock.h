@@ -24,6 +24,7 @@ public:
   static void attach(std::string name);
   static void getList(std::vector<std::string>& jails);
   static bool running(std::string name);
+  static void updateResolv(std::string name);
 };
 
 class Account

@@ -14,6 +14,12 @@ bool Jail::running(std::string name)
   return false;
 }
 
+void Jail::updateResolv(std::string name)
+{
+  std::string destDir = state.jailsRoot + "/" + state.username + "/" + name;
+  Process::run("cp /etc/resolv.conf " + destDir + "/etc/resolv.conf");
+}
+
 void Jail::create(std::string name)
 {
   std::string destDir = state.jailsRoot + "/" + state.username + "/" + name;
@@ -40,6 +46,7 @@ void Jail::destroy(std::string name)
 
 void Jail::attach(std::string name)
 {
+  updateResolv(name);
   Process::run("jexec -l -U root " + state.username + "_" + name, false);
 }
 
@@ -54,6 +61,8 @@ void Jail::start(std::string name)
 {
   std::string destDir = state.jailsRoot + "/" + state.username + "/" + name;
   std::string ip = "127.0.1.2";
+
+  updateResolv(name);
 
   Process::run("jail -c name=" +
     state.username + "_" + name +
