@@ -15,6 +15,8 @@ void Network::setup()
 
   Process::run("ifconfig lo1 create");
 
+  Process::run("ifconfig lo1 alias 127.0.1.2 netmask 255.255.255.255");
+
 /*
   try
   {
