@@ -1,5 +1,27 @@
 # pavelock
-A FreeBSD Jails management system
+A simple SSH FreeBSD Jails management system
+
+```
+    *****************************************************
+    *    ___                      _               _     *
+    *   / _ \  __ _ __   __  ___ | |  ___    ___ | | __ *
+    *  / /_)/ / _` |\ \ / / / _ \| | / _ \  / __|| |/ / *
+    * / ___/ | (_| | \ V / |  __/| || (_) || (__ |   <  *
+    * \/      \__,_|  \_/   \___||_| \___/  \___||_|\_\ *
+    *                powered by FreeBSD                 *
+    *****************************************************
+    Welcome, what would you like to do?
+    
+    1) Attach to running Jail
+    2) Start/stop existing Jails
+    3) Create new Jail
+    4) Delete existing Jail
+    5) Modify account information
+    
+    0) Exit
+    
+    Choice:
+```
 
 ## Installation
 1. Build the Pavelock program source.
@@ -10,7 +32,7 @@ A FreeBSD Jails management system
 
 `$ make plsh`
 
-3. Add a new user called 'pavelock'
+3. Add a new user called 'pavelock'. Because authentication is handled internally, also using 'pavelock' for the password is fine.
 
 `# adduser`
 
@@ -33,6 +55,7 @@ SSH into the server using the 'pavelock' user.
 
 You will be greeted with the following screen:
 
+```
     *****************************************************
     *    ___                      _               _     *
     *   / _ \  __ _ __   __  ___ | |  ___    ___ | | __ *
@@ -50,25 +73,7 @@ You will be greeted with the following screen:
     0) Exit
     
     Choice:
+````
 
 Once you have registered a new user, you can log in and will be able to access the main Jail menu.
 
-    *****************************************************
-    *    ___                      _               _     *
-    *   / _ \  __ _ __   __  ___ | |  ___    ___ | | __ *
-    *  / /_)/ / _` |\ \ / / / _ \| | / _ \  / __|| |/ / *
-    * / ___/ | (_| | \ V / |  __/| || (_) || (__ |   <  *
-    * \/      \__,_|  \_/   \___||_| \___/  \___||_|\_\ *
-    *                powered by FreeBSD                 *
-    *****************************************************
-    Welcome, what would you like to do?
-    
-    1) Attach to running Jail
-    2) Start/stop existing Jails
-    3) Create new Jail
-    4) Delete existing Jail
-    5) Modify account information
-    
-    0) Exit
-    
-    Choice:
