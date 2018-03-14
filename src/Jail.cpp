@@ -20,11 +20,11 @@ void Jail::updateResolv(std::string name)
   Process::run("cp /etc/resolv.conf " + destDir + "/etc/resolv.conf");
 }
 
-void Jail::create(std::string name)
+void Jail::create(std::string name, std::string set)
 {
   std::string destDir = state.jailsRoot + "/" + state.username + "/" + name;
   Process::run("mkdir " + destDir);
-  std::string setPath = state.setsRoot + "/freebsd_11_1_amd64/base.txz";
+  std::string setPath = state.setsRoot + "/"+set+"/base.txz";
   Process::run("tar -xpf " + setPath + " -C " + destDir);
 }
 
@@ -86,6 +86,28 @@ void Jail::getList(std::vector<std::string>& jails)
     if(folder.at(0) != '_' && folder.at(0) != '.')
     {
       jails.push_back(folder);
+    }
+  }
+
+  closedir(dir);
+}
+
+void Jail::getSets(std::vector<std::string>& sets)
+{
+  std::string setsDir = state.setsRoot;
+
+  DIR* dir = opendir(setsDir.c_str());
+  dirent* ent = NULL;
+
+  while((ent = readdir(dir)) != NULL)
+  {
+    std::string folder = ent->d_name;
+
+    // A bit hacky but all folders ^f(reebsd).
+    // Ignore README.txt
+    if(folder.at(0) == 'f')
+    {
+      sets.push_back(folder);
     }
   }
 

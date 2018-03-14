@@ -17,7 +17,7 @@ extern State state;
 class Jail
 {
 public:
-  static void create(std::string name);
+  static void create(std::string name, std::string set);
   static void destroy(std::string name);
   static void start(std::string name);
   static void stop(std::string name);
@@ -25,6 +25,7 @@ public:
   static void getList(std::vector<std::string>& jails);
   static bool running(std::string name);
   static void updateResolv(std::string name);
+  static void getSets(std::vector<std::string>& sets);
 };
 
 class Account

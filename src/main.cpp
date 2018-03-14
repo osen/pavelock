@@ -125,6 +125,19 @@ void delete_jail()
 
 void create_jail()
 {
+  std::vector<std::string> sets;
+  int choice = 0;
+
+  Jail::getSets(sets);
+
+  while(true)
+  {
+    choice = Input::getChoice("What type of Jail would you like to create?", sets, true);
+
+    if(choice == 0) return;
+    break;
+  }
+
   while(true)
   {
     std::cout << "Please enter a name for the new Jail" << std::endl << std::endl;
@@ -132,7 +145,7 @@ void create_jail()
 
     try
     {
-      Jail::create(name);
+      Jail::create(name, sets.at(choice - 1));
       Input::notice("Jail created successfully: '" + name + "'");
     }
     catch(Exception& e)
