@@ -3,20 +3,30 @@ A FreeBSD Jails management system
 
 ## Installation
 1. Build the Pavelock program source.
+
 `$ make`
+
 2. Build and install the Pavelock shell (plsh) to /tmp/plsh (setting sbit to run as root)
+
 `$ make plsh`
+
 3. Add a new user called 'pavelock'
+
 `# adduser`
+
 4. Set the shell of 'pavelock' to '/bin/plsh'
+
 `# chsh pavelock`
+
 5. Ensure that the default "open" firewall (IPFW) and nat are running
-    `# echo 'firewall_enable="YES"' >> /etc/rc.conf`
-    `# echo 'firewall_type="open"' >> /etc/rc.conf`
-    `# echo 'firewall_nat_enable="YES"' >> /etc/rc.conf`
+
+    # echo 'firewall_enable="YES"' >> /etc/rc.conf
+    # echo 'firewall_type="open"' >> /etc/rc.conf
+    # echo 'firewall_nat_enable="YES"' >> /etc/rc.conf
 
 ## Usage
 SSH into the server using the 'pavelock' user.
+
 `$ ssh pavelock@myhost.my.domain`
 
 You will be greeted with the following screen:
