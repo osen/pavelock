@@ -20,9 +20,11 @@ A FreeBSD Jails management system
 
 5. Ensure that the default "open" firewall (IPFW) and nat are running
 
-    # echo 'firewall_enable="YES"' >> /etc/rc.conf
-    # echo 'firewall_type="open"' >> /etc/rc.conf
-    # echo 'firewall_nat_enable="YES"' >> /etc/rc.conf
+```
+# echo 'firewall_enable="YES"' >> /etc/rc.conf
+# echo 'firewall_type="open"' >> /etc/rc.conf
+# echo 'firewall_nat_enable="YES"' >> /etc/rc.conf
+```
 
 ## Usage
 SSH into the server using the 'pavelock' user.
