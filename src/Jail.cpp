@@ -64,12 +64,13 @@ void Jail::start(std::string name)
 
   updateResolv(name);
 
-  Process::run("jail -c name=" +
+  Process::run("jail -c persist name=" +
     state.username + "_" + name +
     " path=" + destDir +
     " mount.devfs host.hostname=" + name +
     ".jail ip4.addr=" + ip +
-    " interface=lo1 command=sh /etc/rc");
+    " allow.set_hostname=false" +
+    " interface=lo1 command=sh /etc/rc", false);
 }
 
 void Jail::getList(std::vector<std::string>& jails)

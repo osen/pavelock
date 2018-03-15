@@ -27,7 +27,7 @@ void Network::setup()
 
   //Process::run("ipfw nat 200 config if wlan0");
   //Process::run("ipfw nat 200 config if bge0");
-  //Process::run("ipfw nat 200 config if bge0 reset same_ports redirect_port tcp 127.0.1.2:2000-3000 2000-3000");
-  Process::run("ipfw nat 200 config if wlan0 reset same_ports redirect_port tcp 127.0.1.2:2000-3000 2000-3000");
+  Process::run("ipfw nat 200 config if bge0 reset same_ports redirect_port tcp 127.0.1.2:2000-3000 2000-3000");
+  //Process::run("ipfw nat 200 config if wlan0 reset same_ports redirect_port tcp 127.0.1.2:2000-3000 2000-3000");
   Process::run("ipfw add 50 nat 200 all from any to any");
 }
