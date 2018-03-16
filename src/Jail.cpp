@@ -64,7 +64,13 @@ void Jail::destroy(std::string name)
 
   try
   {
-    Process::run("umount -f" + destDir + "/dev");
+    Process::run("umount " + destDir + "/dev");
+  }
+  catch(Exception&) { }
+
+  try
+  {
+    Process::run("umount -f " + destDir + "/dev");
   }
   catch(Exception&) { }
 
