@@ -17,6 +17,7 @@ extern State state;
 class Jail
 {
 public:
+  static void copyQemuStatic(std::string set, std::string jailRoot);
   static void create(std::string name, std::string set);
   static void destroy(std::string name);
   static void start(std::string name);
@@ -62,6 +63,7 @@ class Environment
 {
 public:
   static void setup(std::string path);
+  static bool pathExists(std::string path);
 };
 
 class Network

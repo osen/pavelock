@@ -2,6 +2,29 @@
 
 #include <dirent.h>
 
+#include <iostream>
+
+void Jail::copyQemuStatic(std::string set, std::string jailRoot)
+{
+  std::string arch;
+
+  for(int i = set.length() - 1; i >= 0; i--)
+  {
+    if(set.at(i) == '_')
+    {
+      arch = set.substr(i + 1);
+      break;
+    }
+  }
+
+  if(arch != "aarch64" && arch != "arm") return;
+  std::string qemuStatic = "/usr/local/bin/qemu-" + arch + "-static";
+  if(!Environment::pathExists(qemuStatic)) return;
+
+  Process::run("mkdir -p " + jailRoot + "/usr/local/bin");
+  Process::run("cp " + qemuStatic + " " + jailRoot + "/usr/local/bin");
+}
+
 bool Jail::running(std::string name)
 {
   try
@@ -25,7 +48,12 @@ void Jail::create(std::string name, std::string set)
   std::string destDir = state.jailsRoot + "/" + state.username + "/" + name;
   Process::run("mkdir " + destDir);
   std::string setPath = state.setsRoot + "/"+set+"/base.txz";
+
+  std::cout << std::endl << "Extracting Jail base. Please wait." << std::endl;
+
   Process::run("tar -xpf " + setPath + " -C " + destDir);
+
+  copyQemuStatic(set, state.jailsRoot + "/" + state.username + "/" + name);
 }
 
 void Jail::destroy(std::string name)
