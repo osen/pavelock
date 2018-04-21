@@ -46,6 +46,15 @@ A simple SSH FreeBSD Jails management system
 # echo 'firewall_enable="YES"' >> /etc/rc.conf
 # echo 'firewall_type="open"' >> /etc/rc.conf
 # echo 'firewall_nat_enable="YES"' >> /etc/rc.conf
+# reboot
+```
+
+[optional] If you require Jails with a different architecture, install qemu-user-static and enable the startup script:
+
+```
+# pkg install qemu-user-static
+# echo 'qemu_user_static_enable="YES"' >> /etc/rc.conf
+# reboot
 ```
 
 ## Usage
